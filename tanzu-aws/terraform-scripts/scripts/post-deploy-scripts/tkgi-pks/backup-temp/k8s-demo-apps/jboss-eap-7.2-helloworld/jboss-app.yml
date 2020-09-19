@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jboss-app
+  namespace: jboss
+  labels:
+    app: jboss-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: jboss-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: jboss-app
+    spec:
+      containers:
+      - name: jboss-app
+        image: thecloudgarage.com/ambar-jboss-eap-7.2:latest
+        ports:
+        - name: jboss-http
+          containerPort: 8080
+        - name: jboss-https
+          containerPort: 8443
+        - name: jboss-mgmt
+          containerPort: 9990
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /jboss-healthcheck
+            port: 8080
+          initialDelaySeconds: 10
+        readinessProbe:
+          httpGet:
+             path: /jboss-healthcheck
+             port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1

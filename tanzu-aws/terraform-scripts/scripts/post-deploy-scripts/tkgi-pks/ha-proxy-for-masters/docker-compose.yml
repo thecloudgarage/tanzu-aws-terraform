@@ -1,0 +1,9 @@
+version: '3'
+services:
+  master:
+    image: thecloudgarage/haproxy-with-dataplane
+    ports:
+     - "8443:8443"
+     - "5555:5555"
+    volumes:
+      - /home/ubuntu/scripts/post-deploy-scripts/tkgi-pks/ha-proxy-for-masters/:/usr/local/etc/haproxy

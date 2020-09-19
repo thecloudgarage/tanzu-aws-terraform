@@ -1,0 +1,9 @@
+version: "3.4"
+services:
+  tanzu-aws:
+    image: thecloudgarage/tanzu-aws
+    container_name: tanzu-aws-deploy
+    environment:
+      - AWS_ACCESS_KEY_ID=xxxxxxxxxx
+      - AWS_SECRET_ACCESS_KEY=xxxxxx
+
