@@ -2,7 +2,7 @@
 
 set -e
 
-ROOT_DOMAIN=aws.thecloudgarage.com
+ROOT_DOMAIN=rootDomain
 SYS_DOMAIN=sys.$ROOT_DOMAIN
 APPS_DOMAIN=apps.$ROOT_DOMAIN
 
